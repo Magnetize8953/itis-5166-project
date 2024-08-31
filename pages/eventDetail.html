@@ -8,16 +8,23 @@
     <link rel="stylesheet" href="../css/newConnectionStyle.css">
 </head>
 <body>
-    <nav id="user-navigation">
-        <img src="images/ColorStack_UNC-Charlotte_Logo.png" alt="Logo" id="logo">
-        <p>Start a New Event</p>
-        <!-- Add login and signup buttons (have not been created yet)-->
-        <a href="login.html">Login</a>
-        <a href="signup.html">Signup</a>
-      </nav>
-      <nav id="main-navigation">
-        <a href="pages/events.html">Events</a>
-        <a href="pages/newEvent.html">Create Event</a>
-      </nav>
+    <!-- Event details will be displayed here -->
+    <h1>Event Details</h1>
+    <section id="event-details">
+        <h2>Event Name</h2>
+        <p>Date: [Event Date]</p>
+        <p>Location: [Event Location]</p>
+        <p>Description: [Event Description]</p>
+        <p>Organizer: [Event Organizer]</p>
+        <p>Attendees: [Event Attendees]</p>
+    </section>
+    <!-- Buttons to register or cancel the event -->
+    <div id="buttons">
+        <button id="register">Register</button>
+        <button id="cancel">Cancel</button>
+    </div>
+    <!-- Script for event details -->
+    <script src="../js/eventDetail.js"></script>
 </body>
+<script src="../js/script.js"></script>
 </html>
