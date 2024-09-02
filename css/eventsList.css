@@ -37,6 +37,16 @@
     }
   }
 
+  .category {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15em;
+
+    color: grey;
+  }
+
   .professional {
     border-color: #fdb433;
   }
