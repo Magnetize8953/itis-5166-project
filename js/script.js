@@ -24,8 +24,10 @@ header.appendChild(mainNavigation);
 footer = document.createElement("footer");
 footer.innerHTML = `
 <p>&copy; 2024 ColorStack at UNC Charlotte. All rights reserved.</p>
-<a href="about.html">ABOUT</a>
-<a href="contact.html">CONTACT</a>`;
+<ul>
+  <a href="about.html">ABOUT</a>
+  <a href="contact.html">CONTACT</a>
+</ul>`;
 
 // Append the header to the top of the body
 document.body.insertBefore(header, document.body.firstChild);

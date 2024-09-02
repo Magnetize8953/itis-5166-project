@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>createNewEvent</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/newEvent.css">
-</head>
-<body>
-    <h1>Create a New Event</h1>
-    <form>
-      <label for="topic">Topic</label>
-      <input type="email" id="topic" name="topic" hint="Enter the topic of your connection" required>
-      <label for="title">Title</label>
-      <input type="text" id="title" name="title" hint="Enter the title of your connection" required>
-      <label for="host">Host</label>
-      <input type="text" id="host" name="host" hint="Enter the host of your connection" required>
-      <label for="details">Details</label>
-      <input type="text" id="details" name="details" hint="Enter the details of your connection" required>
-      <label for="date">When</label>
-      <input type="date" id="date" name="date" hint="mm/dd/yyyy" required>
-      <label for="time">Start</label>
-      <input type="time" id="time" name="time" hint="--:-- --" required>
-      <label for="end">End</label>
-      <input type="time" id="end" name="end" hint="--:-- --" required>
-      <label for="image">Image</label>
-      <input type="file" id="image" name="image" accept="image/*" required>
-      <button type="submit">Create Event</button>
-    </form>
-</body>
-<script src="../js/script.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>createNewEvent</title>
+        <link rel="stylesheet" href="../css/styles.css">
+    </head>
+
+    <body>
+        <main>
+            <h1>Create a New Event</h1>
+
+            <form>
+              <label for="topic">Topic</label>
+              <input type="email" id="topic" name="topic" hint="Enter the topic of your event" required>
+
+              <label for="title">Title</label>
+              <input type="text" id="title" name="title" hint="Enter the title of your event" required>
+
+              <label for="host">Host</label>
+              <input type="text" id="host" name="host" hint="Enter the host of your event" required>
+
+              <label for="details">Details</label>
+              <input type="text" id="details" name="details" hint="Enter the details of your event" required>
+
+              <label for="date">When</label>
+              <input type="date" id="date" name="date" hint="mm/dd/yyyy" required>
+
+              <label for="time">Start</label>
+              <input type="time" id="time" name="time" hint="--:-- --" required>
+
+              <label for="end">End</label>
+              <input type="time" id="end" name="end" hint="--:-- --" required>
+
+              <label for="image">Image</label>
+              <input type="file" id="image" name="image" accept="image/*" required>
+
+              <button type="submit">Create Event</button>
+            </form>
+        </main>
+    </body>
+
+    <script src="../js/script.js"></script>
 </html>
