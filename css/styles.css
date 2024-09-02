@@ -11,7 +11,7 @@ body {
   height: 100px;
   margin-right: auto;
   margin-left: 0;
-  width: auto; 
+  width: auto;
 }
 
 /* navigation styles */
@@ -87,12 +87,16 @@ header {
 /* main sytles*/
 main {
   padding: 20px;
+  /* this is so so */
+  min-height: calc(100vh - 19.4em);
 }
 
-h1, h2 {
+h1,
+h2 {
   color: #333;
 }
 
+/* footer styles */
 footer {
   background-color: #333;
   color: #246a26;
@@ -112,4 +116,9 @@ footer a {
   color: #246a26;
   margin-left: 15px;
   text-decoration: none;
+}
+
+footer ul {
+  margin-left: auto;
+  margin-right: 1.50em;
 }
