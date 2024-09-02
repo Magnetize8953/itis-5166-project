@@ -31,11 +31,12 @@ body {
   text-align: center;
   padding: 15px 15px;
   margin-top: 20px;
+  margin-right: 0.50em;
   text-decoration: none;
+  border-radius: 0.50em;
 }
 
 #user-navigation a#login {
-  border-radius: 10px;
   background-color: #333;
   border-color: #246a26;
   border-width: 1px;
@@ -45,6 +46,11 @@ body {
   padding: 15px 15px;
   margin-top: 20px;
   text-decoration: none;
+}
+
+#user-navigation a#login:hover {
+  background-color: #3a3;
+  color: white;
 }
 
 #user-navigation a#signup {
