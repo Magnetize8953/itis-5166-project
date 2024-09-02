@@ -1,0 +1,46 @@
+.title-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  h1 {
+    text-align: center;
+  }
+
+  h2 {
+    color: grey;
+  }
+
+  .options {
+    display: block;
+    margin-left: auto;
+
+    ul {
+      list-style: none;
+
+      li a {
+        text-align: right;
+        display: block;
+        text-decoration: none;
+        color: grey;
+      }
+    }
+  }
+}
+
+#event-details {
+  display: flex;
+  margin-left: 10em;
+  margin-right: 10em;
+
+  .event-info {
+    align-self: center;
+  }
+
+  img {
+    margin-left: auto;
+    max-width: 50%;
+    height: auto;
+    border: 0.25em solid black;
+    border-radius: 0.5em;
+  }
+}
