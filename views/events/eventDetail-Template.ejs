@@ -1,0 +1,28 @@
+<%- include('../partials/header', {title: 'Event Details'}) %>
+
+<div class="title-bar">
+    <h2><%= event.organizer %></h2>
+    <h1><%= event.title %></h1>
+    <div class="options">
+        <ul>
+            <li><a href="/events/<%= event.id %>/edit">Edit Event</a></li>
+            <li><a href="/events/<%= event.id %>/delete">Delete Event</a></li>
+        </ul>
+    </div>
+</div>
+
+<section id="event-details">
+    <div class="event-info">
+        <p>Date: <%= event.date %></p>
+        <p>Location: <%= event.location %></p>
+        <p><%= event.description %></p>
+    </div>
+    <img src="<%= event.imageUrl %>" alt="Event image">
+</section>
+
+<div id="buttons">
+    <button id="register">Register</button>
+    <button id="cancel">Cancel</button>
+</div>
+
+<%- include('../partials/footer') %>
