@@ -20,7 +20,9 @@ app.use(morgan('tiny'))
 
 
 // set up routes
-
+app.get('/', (req, res) => {
+    res.render('index')
+})
 
 
 // start server
