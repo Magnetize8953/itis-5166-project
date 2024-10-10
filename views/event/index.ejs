@@ -1,0 +1,20 @@
+<%- include('../partials/header.ejs', { title: 'Events - ColorStack at UNC Charlotte', extraCSS: ['eventsList'] }) %>
+  <h1>Events</h1>
+
+    <div id="events">
+      <% if (events.length) { %>
+        <% events.forEach( (event) => { %>
+        <div class="event-card <%= event.category %>">
+          <h2><%= event.title %></h2>
+          <p class="category"><%= event.category.charAt(0).toUpperCase() + event.category.slice(1) %> Event</p>
+          <p><%= event.description %></p>
+          <a class="learn-more" href="./events/<%= event.id %>">
+            Learn More!
+          </a>
+        </div>
+        <% } ) %>
+      <% } else { %>
+        <h2>No Events Found</h2>
+      <% } %>
+    </div>
+<%- include('../partials/footer.ejs') %>

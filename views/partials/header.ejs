@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %> Event - ColorStack UNC Charlotte</title>
+    <title><%= title %></title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/eventDetail.css">
+    <% if (typeof extraCSS !== 'undefined') { %>
+        <% extraCSS.forEach( (file) => { %>
+            <link rel="stylesheet" href="/css/<%= file %>.css">
+        <% } ) %>
+    <% } %>
 </head>
 <body>
     <header>

@@ -1,4 +1,4 @@
-<%- include('./partials/header', {title: 'Event Details'}) %>
+<%- include('../partials/header', {title: 'Event Details'}) %>
 
 <div class="title-bar">
     <h2><%= event.organizer %></h2>
@@ -17,7 +17,7 @@
         <p>Location: <%= event.location %></p>
         <p><%= event.description %></p>
     </div>
-    <img src="<%= event.imageUrl %>" alt="Event image">
+    <img src="<%= event.img_src %>" alt="Event image">
 </section>
 
 <div id="buttons">
@@ -25,4 +25,4 @@
     <button id="cancel">Cancel</button>
 </div>
 
-<%- include('./partials/footer') %>
+<%- include('../partials/footer') %>
