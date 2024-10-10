@@ -1,6 +1,7 @@
 // require models
 const express = require('express')
 const morgan = require('morgan')
+const eventRoutes = require('./routes/eventRoutes')
 
 
 // create app
@@ -20,9 +21,33 @@ app.use(morgan('tiny'))
 
 
 // set up routes
+// home page
 app.get('/', (req, res) => {
     res.render('index')
 })
+
+// about page
+app.get('/about', (req, res) => {
+    res.render('about')
+})
+
+// contact page
+app.get('/contact', (req, res) => {
+    res.render('contact')
+})
+
+// login page
+app.get('/login', (req, res) => {
+    res.render('login')
+})
+
+// signup page
+app.get('/register', (req, res) => {
+    res.render('signup')
+})
+
+// middleware for events pages
+app.use('/events', eventRoutes)
 
 
 // start server
