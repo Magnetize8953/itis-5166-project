@@ -9,26 +9,23 @@
     <label class="grid1" for="category">Category</label>
     <input class="grid2" type="text" id="category" name="category" placeholder="Enter the category of the event" required><br>
 
-    <label class="grid1" for="organizer">Host</label>
-    <input class="grid2" type="text" id="organizer" name="organizer" placeholder="Enter the name of the event host" required><br>
+    <label class="grid1" for="hostName">Host</label>
+    <input class="grid2" type="text" id="hostName" name="hostName" placeholder="Enter the name of the event host" required><br>
 
-    <label class="grid1" for="description">Details</label>
-    <input class="grid2" type="text" id="description" name="description" placeholder="Enter a short description of the event" required><br>
+    <label class="grid1" for="details">Details</label>
+    <textarea class="grid2" id="details" name="details" placeholder="Enter a short description of the event" required></textarea><br>
 
-    <label class="grid1" for="location">Location</label>
-    <input class="grid2" type="text" id="location" name="location" placeholder="Enter the location of the event" required><br>
+    <label class="grid1" for="when">Date</label>
+    <input class="grid2" type="date" id="when" name="when" required><br>
 
-    <label class="grid1" for="when">When</label>
-    <input class="grid2" type="date" id="when" name="when" placeholder="Enter when the event will be held" required><br>
+    <label class="grid1" for="start">Start Time</label>
+    <input class="grid2" type="time" id="start" name="start" required><br>
 
-    <label class="grid1" for="start">Start</label>
-    <input class="grid2" type="time" id="start" name="start" placeholder="Enter the starting time for the event" required><br>
-
-    <label class="grid1" for="end">End</label>
-    <input class="grid2" type="time" id="end" name="end" placeholder="Enter the ending time for the event" required><br>
+    <label class="grid1" for="end">End Time</label>
+    <input class="grid2" type="time" id="end" name="end" required><br>
 
     <label class="grid1" for="image">Image</label>
-    <input class="grid2" type="file" id="image" name="image" placeholder="Upload an image for the event"><br>
+    <input class="grid2" type="file" id="image" name="image" accept="image/*"><br>
 
     <button type="submit">Create Event</button>
 
