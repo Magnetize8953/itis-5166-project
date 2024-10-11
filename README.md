@@ -7,6 +7,9 @@ Diego Lopez, Andy Ha
 2. [Explanation of Additional Features](#2-explanation-of-additional-features)
 3. [Status, Stopping Point, and Issues](#3-status-stopping-point-and-issues)
 4. [Easy and Challenging Parts](#4-easy-and-challenging-parts)
+5. [Technologies Used](#5-technologies-used)
+6. [Project Structure](#6-project-structure)
+7. [Setup and Installation](#7-setup-and-installation)
 
 ## 1. Screenshots of Application Pages
 - Home
@@ -31,7 +34,7 @@ Diego Lopez, Andy Ha
   - More information about the organization and website purpose
   - Styling for login/signup pages (intentionally left unstyled as a reminder of incompleteness)
 - Incomplete and unused code files await backend establishment
-- Events currently hard-coded in HTML
+
   - Considered JSON file approach, but decided against due to CORS issues and anticipated database implementation
 
 ## 4. Easy and Challenging Parts
@@ -42,4 +45,28 @@ Easy:
 Challenging:
 - Proper alignment and grouping of header and footer elements
 - Conceptualizing dynamic event population without a backend
-- Navigating multiple HTML files in a static website environment
+
+## 5. Technologies Used
+- Node.js
+- Express.js
+- EJS (Embedded JavaScript templating)
+- CSS
+- JavaScript
+- Luxon (for date handling)
+- UUID (for generating unique IDs)
+
+## 6. Project Structure
+The project follows a typical MVC (Model-View-Controller) structure:
+
+- `models/`: Contains data models (e.g., event.js)
+- `views/`: EJS templates for rendering pages
+- `controllers/`: Logic for handling requests (e.g., eventController.js)
+- `routes/`: Express routes (e.g., eventRoutes.js)
+- `public/`: Static assets (CSS, client-side JavaScript, images)
+- `app.js`: Main application file
+
+## 7. Setup and Installation
+1. Clone the repository
+2. Run `npm install` to install dependencies
+3. Start the server with `node app.js`
+4. Access the application at `http://localhost:3000`
