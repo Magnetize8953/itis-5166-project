@@ -51,6 +51,25 @@ app.get('/signup', (req, res) => {
 // middleware for events pages
 app.use('/events', eventRoutes)
 
+app.use((req, res, next) => {
+    let err = new Error(`The server cannot locate ${req.url}`)
+    err.status = 404
+
+    next(err)
+})
+
+app.use((err, req, res, next) => {
+    console.log(err.stack)
+
+    if (!err.status) {
+        err.status = 500
+        err.message = 'Internal server error'
+    }
+
+    res.status(err.status)
+    res.render('error', { error: err })
+})
+
 
 // start server
 app.listen(port, host, () => {

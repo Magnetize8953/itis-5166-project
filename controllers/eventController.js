@@ -10,17 +10,6 @@ exports.index = ('/events', (req, res) => {
     res.render('./event/index', { events, categories });
 })
 
-// GET /event/:id: send details about event id
-exports.show = ('/events/:id', (req, res) => {
-    let id = req.params.id
-    let event = model.findById(id)
-    if (event) {
-        res.render('./event/eventDetail', { event })
-    } else {
-        res.status(404).send(`${id} not found`)
-    }
-})
-
 // GET /events/create: send html form for creating new event
 exports.new = ('/events/new', (req, res) => {
     res.render('./event/newEvent')
@@ -34,46 +23,54 @@ exports.create = ('/', (req, res) => {
 })
 
 // GET /events/:id: send details about event id
-exports.show = ('/:id', (req, res) => {
+exports.show = ('/:id', (req, res, next) => {
     let id = req.params.id
     let event = model.findById(id)
     if (event) {
         res.render('./event/eventDetail', { event })
     } else {
-        res.status(404).send(`${id} not found`)
+        let err = new Error(`Cannot find event with id ${id}`)
+        err.status = 404
+        next(err)
     }
 })
 
 // GET /events/:id/edit: send html form for editing existing event
-exports.edit = ('/:id/edit', (req, res) => {
+exports.edit = ('/:id/edit', (req, res, next) => {
     let id = req.params.id
     let event = model.findById(id)
     if (event) {
         res.render('./event/editEvent', { event })
     } else {
-        res.status(404).send(`${id} not found`)
+        let err = new Error(`Cannot find event with id ${id}`)
+        err.status = 404
+        next(err)
     }
 })
 
 // PUT /events/:id: update event id
-exports.update = ('/:id', (req, res) => {
+exports.update = ('/:id', (req, res, next) => {
     let event = req.body
     let id = req.params.id
 
     if (model.update(id, event)) {
         res.redirect(`/events/${id}`)
     } else {
-        res.status(404).send(`${id} not found`)
+        let err = new Error(`Cannot find event with id ${id}`)
+        err.status = 404
+        next(err)
     }
 })
 
 // DELETE /events/:id: delete event id
-exports.delete = ('/:id', (req, res) => {
+exports.delete = ('/:id', (req, res, next) => {
     let id = req.params.id
 
     if (model.delete(id)) {
         res.redirect('/events')
     } else {
-        res.status(404).send(`${id} not found`)
+        let err = new Error(`Cannot find event with id ${id}`)
+        err.status = 404
+        next(err)
     }
 })
