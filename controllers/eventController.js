@@ -28,11 +28,6 @@ exports.new = ('/events/new', (req, res) => {
 // POST /events: create new event
 exports.create = ('/', (req, res) => {
     let event = req.body
-    event.category = event.category.charAt(0).toLowerCase() + event.category.slice(1)
-    event.date = DateTime.fromObject({
-        year: parseInt(event.when.slice(0, 4)), month: parseInt(event.when.slice(5, 7)), day: parseInt(event.when.slice(8)),
-        hour: parseInt(event.start.slice(0, 3)), minute: parseInt(event.start.slice(4))
-    }).toLocaleString(DateTime.DATETIME_MED)
     model.save(event)
     res.redirect('/events')
 })
