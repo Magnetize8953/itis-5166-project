@@ -102,3 +102,7 @@ exports.delete = (id) => {
   }
   return false
 }
+
+exports.getDistinctCategories = () => {
+    return [...new Set(events.map(event => event.category))];
+};

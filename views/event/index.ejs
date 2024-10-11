@@ -1,23 +1,23 @@
 <%- include('../partials/header.ejs', { title: 'Events - ColorStack at UNC Charlotte', extraCSS: ['eventsList'] }) %>
   <h1>Events</h1>
 
-    <div id="events">
-      <% if (events.length) { %>
-        <% events.forEach( (event) => { %>
-        <div class="event-card <%= event.category %>">
-          <h2><%= event.title %></h2>
-          <p class="category"><%= event.category.charAt(0).toUpperCase() + event.category.slice(1) %> Event</p>
-          <p><%= event.details %></p>
-          <p>Host: <%= event.hostName %></p>
-          <p>Start: <%= new Date(event.startDateTime).toLocaleString() %></p>
-          <p>End: <%= new Date(event.endDateTime).toLocaleString() %></p>
-          <a class="learn-more" href="./events/<%= event.id %>">
-            Learn More!
-          </a>
-        </div>
-        <% } ) %>
-      <% } else { %>
-        <h2>No Events Found</h2>
-      <% } %>
-    </div>
+  <div id="events">
+    <% if (events.length) { %>
+      <% categories.forEach(category => { %>
+        <h2><%= category.charAt(0).toUpperCase() + category.slice(1) %> Events</h2>
+        <% events.filter(event => event.category === category).forEach(event => { %>
+          <div class="event-card <%= event.category %>">
+            <h3><%= event.title %></h3>
+            <p><%= event.details %></p>
+            <p>Host: <%= event.hostName %></p>
+            <p>Start: <%= new Date(event.startDateTime).toLocaleString() %></p>
+            <p>End: <%= new Date(event.endDateTime).toLocaleString() %></p>
+            <a class="learn-more" href="./events/<%= event.id %>">Learn More!</a>
+          </div>
+        <% }); %>
+      <% }); %>
+    <% } else { %>
+      <h2>No Events Found</h2>
+    <% } %>
+  </div>
 <%- include('../partials/footer.ejs') %>
