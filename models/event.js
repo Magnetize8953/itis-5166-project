@@ -70,24 +70,36 @@ exports.findById = (id) => { return events.find(event => event.id == id) }
 
 exports.save = (event) => {
   event.id = uuidv4()
-  event.createdAt = DateTime.now().toLocaleString(DateTime.DATETIME_SHORT)
+  event.category = event.category.charAt(0).toLowerCase() + event.category.slice(1)
+  event.date = DateTime.fromObject({
+    year: parseInt(event.when.slice(0, 4)), month: parseInt(event.when.slice(5, 7)), day: parseInt(event.when.slice(8)),
+    hour: parseInt(event.start.slice(0, 3)), minute: parseInt(event.start.slice(4))
+  }).toLocaleString(DateTime.DATETIME_MED)
   events.push(event)
 }
 
 exports.update = (id, newEvent) => {
-  let event = events.find(event => event.id === id)
+  let event = events.find(event => event.id == id)
   if (event) {
+    event.organizer = newEvent.organizer
     event.title = newEvent.title
-    event.content = newEvent.content
+    event.category = newEvent.category.charAt(0).toLowerCase() + newEvent.category.slice(1)
+    event.date = DateTime.fromObject({
+      year: parseInt(newEvent.when.slice(0, 4)), month: parseInt(newEvent.when.slice(5, 7)), day: parseInt(newEvent.when.slice(8)),
+      hour: parseInt(newEvent.start.slice(0, 3)), minute: parseInt(newEvent.start.slice(4))
+    }).toLocaleString(DateTime.DATETIME_MED)
+    event.location = newEvent.location
+    event.description = newEvent.description
+    event.img_src = newEvent.img_src
     return true
   }
   return false
 }
 
 exports.delete = (id) => {
-  let event = events.find(event => event.id === id)
-  if (event) {
-    events.splice(events.indexOf(event), 1)
+  let index = events.findIndex((event) => { return event.id == id })
+  if (index !== -1) {
+    events.splice(index, 1)
     return true
   }
   return false
