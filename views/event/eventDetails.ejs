@@ -1,7 +1,7 @@
 <%- include('../partials/header', {title: 'Event Details'}) %>
 
 <div class="title-bar">
-    <h2><%= event.organizer %></h2>
+    <h2><%= event.hostName %></h2>
     <h1><%= event.title %></h1>
     <div class="options">
         <ul>
@@ -13,11 +13,12 @@
 
 <section id="event-details">
     <div class="event-info">
-        <p>Date: <%= event.date %></p>
-        <p>Location: <%= event.location %></p>
-        <p><%= event.description %></p>
+        <p>Category: <%= event.category %></p>
+        <p>Start: <%= new Date(event.startDateTime).toLocaleString() %></p>
+        <p>End: <%= new Date(event.endDateTime).toLocaleString() %></p>
+        <p><%= event.details %></p>
     </div>
-    <img src="<%= event.img_src %>" alt="Event image">
+    <img src="<%= event.image %>" alt="Event image">
 </section>
 
 <div id="buttons">
