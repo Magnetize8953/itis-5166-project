@@ -44,7 +44,7 @@ app.get('/login', (req, res) => {
 })
 
 // signup page
-app.get('/register', (req, res) => {
+app.get('/signup', (req, res) => {
     res.render('signup')
 })
 

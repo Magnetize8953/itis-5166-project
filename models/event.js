@@ -6,60 +6,66 @@ const events = [
     id: '1',
     category: 'professional',
     title: 'Career Fair',
-    hostName: 'UNC Charlotte Career Center',
+    organizer: 'UNC Charlotte Career Center',
     startDateTime: '2024-09-13T11:00',
     endDateTime: '2024-09-13T15:00',
-    details: 'Meet employers, learn about companies, build your network!',
+    location: 'Barnhardt Student Activity Center, Salons',
+    description: 'Meet employers, learn about companies, build your network!',
     image: '/images/Aerial_Clocktower_Atkins.jpg'
   },
   {
     id: '2',
     category: 'professional',
     title: 'Resume Review',
-    hostName: 'UNC Charlotte Career Center',
+    organizer: 'UNC Charlotte Career Center',
     startDateTime: '2024-09-04T14:30',
     endDateTime: '2024-09-04T16:30',
-    details: 'Get your resume reviewed by professionals!',
+    location: 'Atkins Library Annex',
+    description: 'Get your resume reviewed by professionals!',
     image: '/images/Aerial_Atkins_Friday.jpg'
   },
   {
     id: '3',
     category: 'social',
     title: 'Game Night',
-    hostName: 'ColorStack at UNC Charlotte',
+    organizer: 'ColorStack at UNC Charlotte',
     startDateTime: '2024-09-30T19:00',
     endDateTime: '2024-09-30T22:00',
-    details: 'Relax for a night and play some games with fellow ColorStackers!',
+    location: 'Woodward Hall, Room 154',
+    description: 'Relax for a night and play some games with fellow ColorStackers!',
     image: '/images/Woodward_from_Hauser_Alumni_Pavilion.jpg'
   },
   {
     id: '4',
     category: 'social',
     title: 'Social Meetup',
-    hostName: 'ColorStack at UNC Charlotte',
+    organizer: 'ColorStack at UNC Charlotte',
     startDateTime: '2024-09-16T16:30',
     endDateTime: '2024-09-16T18:30',
-    details: 'Meet other members of ColorStack and socialize!',
+    location: 'Star Quad',
+    description: 'Meet other members of ColorStack and socialize!',
     image: '/images/Aerial_CHHS_Atkins_Clocktower.jpg'
   },
   {
     id: '5',
     category: 'social',
     title: 'Interests Exploration',
-    hostName: 'ColorStack at UNC Charlotte',
+    organizer: 'ColorStack at UNC Charlotte',
     startDateTime: '2024-09-23T16:30',
     endDateTime: '2024-09-23T18:30',
-    details: 'Share your interests with your colleagues, learn about theirs. Maybe you\'ll find something new to try out!',
+    location: 'Woodward Hall, Room 106',
+    description: 'Share your interests with your colleagues, learn about theirs. Maybe you\'ll find something new to try out!',
     image: '/images/Aerial_Woodward_Campus.jpg'
   },
   {
     id: '6',
     category: 'professional',
     title: 'Lunch and Learn',
-    hostName: 'ColorStack at UNC Charlotte',
+    organizer: 'ColorStack at UNC Charlotte',
     startDateTime: '2024-09-25T13:00',
     endDateTime: '2024-09-25T14:30',
-    details: 'Enjoy a free lunch while listening to presentations by fellow students and prospective employers!',
+    location: 'Cone University Center, Lucas Room',
+    description: 'Enjoy a free lunch while listening to presentations by fellow students and prospective employers!',
     image: '/images/Aerial_Atkins_Clocktower.jpg'
   }
 ]
@@ -82,12 +88,13 @@ exports.save = (event) => {
 exports.update = (id, newEvent) => {
   let event = events.find(event => event.id == id)
   if (event) {
-    event.hostName = newEvent.hostName
+    event.organizer = newEvent.organizer
     event.title = newEvent.title
     event.category = newEvent.category.charAt(0).toLowerCase() + newEvent.category.slice(1)
     event.startDateTime = `${newEvent.when}T${newEvent.start}`
     event.endDateTime = `${newEvent.when}T${newEvent.end}`
-    event.details = newEvent.details
+    event.location = newEvent.location
+    event.description = newEvent.description
     event.image = newEvent.image
     return true
   }
@@ -104,5 +111,5 @@ exports.delete = (id) => {
 }
 
 exports.getDistinctCategories = () => {
-    return [...new Set(events.map(event => event.category))];
+  return [...new Set(events.map(event => event.category))];
 };

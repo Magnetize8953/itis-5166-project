@@ -4,11 +4,11 @@ const model = require('../models/event')
 
 
 // GET /events: send all events
-exports.index = (req, res) => {
+exports.index = ('/events', (req, res) => {
     let events = model.find();
     let categories = model.getDistinctCategories();
     res.render('./event/index', { events, categories });
-}
+})
 
 // GET /event/:id: send details about event id
 exports.show = ('/events/:id', (req, res) => {

@@ -1,21 +1,23 @@
 <%- include('../partials/header.ejs', { title: 'Events - ColorStack at UNC Charlotte', extraCSS: ['eventsList'] }) %>
   <h1>Events</h1>
 
-  <div id="events">
+    <div id="events">
     <% if (events.length) { %>
-      <% categories.forEach(category => { %>
-        <h2><%= category.charAt(0).toUpperCase() + category.slice(1) %> Events</h2>
-        <% events.filter(event => event.category === category).forEach(event => { %>
+      <% categories.forEach(cat => { %>
+        <h2><%= cat.charAt(0).toUpperCase() + cat.slice(1) %> Events</h2>
+        <br />
+        <% events.filter(event => event.category === cat).forEach(event => { %>
           <div class="event-card <%= event.category %>">
-            <h3><%= event.title %></h3>
-            <p><%= event.details %></p>
-            <p>Host: <%= event.hostName %></p>
-            <p>Start: <%= new Date(event.startDateTime).toLocaleString() %></p>
-            <p>End: <%= new Date(event.endDateTime).toLocaleString() %></p>
+            <h2><%= event.title %></h2>
+            <p class="category"><%= new Date(event.startDateTime).toLocaleString() %></p>
+            <p><%= event.description %></p>
             <a class="learn-more" href="./events/<%= event.id %>">Learn More!</a>
           </div>
-        <% }); %>
-      <% }); %>
+        <% }) %>
+        <% if (events.filter(event => event.category === cat).length % 2 === 1) { %>
+          <br />
+        <% } %>
+      <% }) %>
     <% } else { %>
       <h2>No Events Found</h2>
     <% } %>
