@@ -5,8 +5,8 @@
     <h1><%= event.title %></h1>
     <div class="options">
         <ul>
-            <li><a href="/events/<%= event.id %>/edit">Edit Event</a></li>
-            <li><a href="/events/<%= event.id %>/delete">Delete Event</a></li>
+            <li><form><button type='submit' formmethod='GET' formaction='/events/<%= event.id %>/edit'>Edit Event</button></form></li>
+            <li><form><button type='submit' formmethod='POST' formaction='/events/<%= event.id %>?_method=DELETE'>Delete Event</button></form></li>
         </ul>
     </div>
 </div>

@@ -1,0 +1,36 @@
+<%- include('../partials/header.ejs', { title: 'Edit Event - ColorStack UNC Charlotte', extraCSS: ['eventForm'] }) %>
+<h1>Create a New Event</h1>
+
+<form class="connection-form" action="/events/<%= event.id %>?_method=PUT" method="POST">
+
+    <label class="grid1" for="title">Title</label>
+    <input class="grid2" type="text" id="title" name="title" placeholder="Enter the title of the event" value="<%= event.title %>" required><br>
+
+    <label class="grid1" for="category">Category</label>
+    <input class="grid2" type="text" id="category" name="category" placeholder="Enter the category of the event" value="<%= event.category %>" required><br>
+
+    <label class="grid1" for="organizer">Host</label>
+    <input class="grid2" type="text" id="organizer" name="organizer" placeholder="Enter the name of the event host" value="<%= event.organizer %>" required><br>
+
+    <label class="grid1" for="description">Details</label>
+    <input class="grid2" type="text" id="description" name="description" placeholder="Enter a short description of the event" value="<%= event.description %>" required><br>
+
+    <label class="grid1" for="location">Location</label>
+    <input class="grid2" type="text" id="location" name="location" placeholder="Enter the location of the event" value="<%= event.location %>" required><br>
+
+    <label class="grid1" for="when">When</label>
+    <input class="grid2" type="date" id="when" name="when" placeholder="Enter when the event will be held" value="<%= event.when %>" required><br>
+
+    <label class="grid1" for="start">Start</label>
+    <input class="grid2" type="time" id="start" name="start" placeholder="Enter the starting time for the event" value="<%= event.start %>" required><br>
+
+    <label class="grid1" for="end">End</label>
+    <input class="grid2" type="time" id="end" name="end" placeholder="Enter the ending time for the event" value="<%= event.end %>" required><br>
+
+    <label class="grid1" for="image">Image</label>
+    <input class="grid2" type="file" id="image" name="image" placeholder="Upload an image for the event" value="<%= event.img_url %>"><br>
+
+    <button type="submit">Create Event</button>
+
+</form>
+<%- include('../partials/footer.ejs') %>
