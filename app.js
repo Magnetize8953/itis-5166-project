@@ -51,6 +51,7 @@ app.get('/signup', (req, res) => {
 // middleware for events pages
 app.use('/events', eventRoutes)
 
+// error handling
 app.use((req, res, next) => {
     let err = new Error(`The server cannot locate ${req.url}`)
     err.status = 404

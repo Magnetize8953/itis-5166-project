@@ -16,8 +16,9 @@ exports.new = ('/events/new', (req, res) => {
 })
 
 // POST /events: create new event
-exports.create = ('/', (req, res) => {
+exports.create = ('/', (req, res, next) => {
     let event = req.body
+    event.image = '/images/' + req.file.filename
     model.save(event)
     res.redirect('/events')
 })
@@ -52,8 +53,9 @@ exports.edit = ('/:id/edit', (req, res, next) => {
 exports.update = ('/:id', (req, res, next) => {
     let event = req.body
     let id = req.params.id
+    let img = req.file.filename
 
-    if (model.update(id, event)) {
+    if (model.update(id, event, img)) {
         res.redirect(`/events/${id}`)
     } else {
         let err = new Error(`Cannot find event with id ${id}`)

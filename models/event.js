@@ -85,7 +85,7 @@ exports.save = (event) => {
   events.push(event)
 }
 
-exports.update = (id, newEvent) => {
+exports.update = (id, newEvent, img) => {
   let event = events.find(event => event.id == id)
   if (event) {
     event.organizer = newEvent.organizer
@@ -95,7 +95,7 @@ exports.update = (id, newEvent) => {
     event.endDateTime = `${newEvent.when}T${newEvent.end}`
     event.location = newEvent.location
     event.description = newEvent.description
-    event.image = newEvent.image
+    event.image = '/images/' + img
     return true
   }
   return false

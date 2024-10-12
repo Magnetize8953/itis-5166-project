@@ -1,7 +1,7 @@
 <%- include('../partials/header.ejs', { title: 'Edit Event - ColorStack UNC Charlotte', extraCSS: ['eventForm'] }) %>
 <h1>Edit Event: <%= event.title %></h1>
 
-<form class="connection-form" action="/events/<%= event.id %>?_method=PUT" method="POST">
+<form class="connection-form" action="/events/<%= event.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 
     <label class="grid1" for="title">Title</label>
     <input class="grid2" type="text" id="title" name="title" placeholder="Enter the title of the event" value="<%= event.title %>" required><br>
@@ -28,7 +28,7 @@
     <input class="grid2" type="time" id="end" name="end" placeholder="Enter the ending time for the event" value="<%= event.endDateTime.substring(11, 16) %>" required><br>
 
     <label class="grid1" for="image">Image</label>
-    <input class="grid2" type="file" id="image" name="image" placeholder="Upload an image for the event" value="<%= event.img_url %>"><br>
+    <input class="grid2" type="file" id="image" name="image" placeholder="Upload an image for the event" value="<%= event.image %>"><br>
 
     <button type="submit">Create Event</button>
 
