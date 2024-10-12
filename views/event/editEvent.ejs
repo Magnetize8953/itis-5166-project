@@ -1,5 +1,5 @@
 <%- include('../partials/header.ejs', { title: 'Edit Event - ColorStack UNC Charlotte', extraCSS: ['eventForm'] }) %>
-<h1>Create a New Event</h1>
+<h1>Edit Event: <%= event.title %></h1>
 
 <form class="connection-form" action="/events/<%= event.id %>?_method=PUT" method="POST">
 
@@ -13,19 +13,19 @@
     <input class="grid2" type="text" id="organizer" name="organizer" placeholder="Enter the name of the event host" value="<%= event.organizer %>" required><br>
 
     <label class="grid1" for="description">Details</label>
-    <input class="grid2" type="text" id="description" name="description" placeholder="Enter a short description of the event" value="<%= event.description %>" required><br>
+    <textarea class="grid2" id="description" name="description" placeholder="Enter a short description of the event" required><%= event.description %></textarea><br>
 
     <label class="grid1" for="location">Location</label>
     <input class="grid2" type="text" id="location" name="location" placeholder="Enter the location of the event" value="<%= event.location %>" required><br>
 
-    <label class="grid1" for="when">When</label>
-    <input class="grid2" type="date" id="when" name="when" placeholder="Enter when the event will be held" value="<%= event.startDateTime.slice(0,event.startDateTime.indexOf('T')) %>" required><br>
+    <label class="grid1" for="when">Date</label>
+    <input class="grid2" type="date" id="when" name="when" placeholder="Enter when the event will be held" value="<%= event.startDateTime.substring(0, event.startDateTime.indexOf('T')) %>" required><br>
 
-    <label class="grid1" for="start">Start</label>
-    <input class="grid2" type="time" id="start" name="start" placeholder="Enter the starting time for the event" value="<%= event.startDateTime.slice(event.startDateTime.indexOf('T')) %>" required><br>
+    <label class="grid1" for="start">Start Time</label>
+    <input class="grid2" type="time" id="start" name="start" placeholder="Enter the starting time for the event" value="<%= event.startDateTime.substring(11, 16) %>" required><br>
 
-    <label class="grid1" for="end">End</label>
-    <input class="grid2" type="time" id="end" name="end" placeholder="Enter the ending time for the event" value="<%= event.endDateTime.slice(event.endDateTime.indexOf('T')) %>" required><br>
+    <label class="grid1" for="end">End Time</label>
+    <input class="grid2" type="time" id="end" name="end" placeholder="Enter the ending time for the event" value="<%= event.endDateTime.substring(11, 16) %>" required><br>
 
     <label class="grid1" for="image">Image</label>
     <input class="grid2" type="file" id="image" name="image" placeholder="Upload an image for the event" value="<%= event.img_url %>"><br>
