@@ -3,6 +3,8 @@ const express = require('express')
 const morgan = require('morgan')
 const methodOverride = require('method-override')
 const eventRoutes = require('./routes/eventRoutes')
+const mongoose = require('mongoose')
+require('dotenv').config()
 
 
 // create app
@@ -12,8 +14,18 @@ const app = express()
 // configure app
 let port = 3000
 let host = 'localhost'
+let url = process.env.HL_MONGODB_URL
 app.set('view engine', 'ejs')
 
+// connect to mongo
+mongoose.connect(url)
+    .then(() => {
+        // start server
+        app.listen(port, host, () => {
+            console.log(`Server is running at ${host}:${port}`)
+        })
+    })
+    .catch(err => console.log(err.message))
 
 // mount middleware
 app.use(express.static('public'))
@@ -69,11 +81,5 @@ app.use((err, req, res, next) => {
 
     res.status(err.status)
     res.render('error', { error: err })
-})
-
-
-// start server
-app.listen(port, host, () => {
-    console.log(`Server is running at ${host}:${port}`)
 })
 
