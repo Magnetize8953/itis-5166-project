@@ -22,8 +22,8 @@ exports.create = (req, res, next) => {
 
     // fix up req.body
     req.body.category = req.body.category.charAt(0).toLowerCase() + req.body.category.slice(1)
-    req.body.startDateTime = `${req.body.when}T${req.body.start}`
-    req.body.endDateTime = `${req.body.when}T${req.body.end}`
+    req.body.startDateTime = new Date(`${req.body.when}T${req.body.start}`)
+    req.body.endDateTime = new Date(`${req.body.when}T${req.body.end}`)
     req.body.image = '/images/' + req.file.filename
     delete req.body.when
     delete req.body.start
@@ -99,8 +99,8 @@ exports.update = (req, res, next) => {
 
     // fix up event
     event.category = event.category.charAt(0).toLowerCase() + event.category.slice(1)
-    event.startDateTime = `${event.when}T${event.start}`
-    event.endDateTime = `${event.when}T${event.end}`
+    event.startDateTime = new Date(`${event.when}T${event.start}`)
+    event.endDateTime = new Date(`${event.when}T${event.end}`)
     event.image = '/images/' + img
     delete event.when
     delete event.start
