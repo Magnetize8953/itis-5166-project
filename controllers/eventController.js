@@ -95,13 +95,22 @@ exports.edit = (req, res, next) => {
 exports.update = (req, res, next) => {
     let event = req.body
     let id = req.params.id
-    let img = req.file.filename
+    let img
+    // check that a new image was uploaded
+    if (req.file) {
+        img = req.file.filename
+    }
 
     // fix up event
     event.category = event.category.charAt(0).toLowerCase() + event.category.slice(1)
     event.startDateTime = new Date(`${event.when}T${event.start}`)
     event.endDateTime = new Date(`${event.when}T${event.end}`)
-    event.image = '/images/' + img
+    if (img) {
+        event.image = '/images/' + img
+    } else {
+        // if no image was uploaded, delete the image field
+        delete event.image
+    }
     delete event.when
     delete event.start
     delete event.end
