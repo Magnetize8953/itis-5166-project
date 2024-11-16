@@ -19,13 +19,13 @@
     <input class="grid2" type="text" id="location" name="location" placeholder="Enter the location of the event" value="<%= event.location %>" required><br>
 
     <label class="grid1" for="when">Date</label>
-    <input class="grid2" type="date" id="when" name="when" placeholder="Enter when the event will be held" value="<%= event.startDateTime.substring(0, event.startDateTime.indexOf('T')) %>" required><br>
+    <input class="grid2" type="date" id="when" name="when" placeholder="Enter when the event will be held" value="<%= event.startDateTime.toISOString().substring(0, event.startDateTime.toISOString().indexOf('T')) %>" required><br>
 
     <label class="grid1" for="start">Start Time</label>
-    <input class="grid2" type="time" id="start" name="start" placeholder="Enter the starting time for the event" value="<%= event.startDateTime.substring(11, 16) %>" required><br>
+    <input class="grid2" type="time" id="start" name="start" placeholder="Enter the starting time for the event" value="<%= event.startDateTime.toISOString().substring(event.startDateTime.toISOString().indexOf('T') + 1, event.startDateTime.toISOString().indexOf('Z')) %>" required><br>
 
     <label class="grid1" for="end">End Time</label>
-    <input class="grid2" type="time" id="end" name="end" placeholder="Enter the ending time for the event" value="<%= event.endDateTime.substring(11, 16) %>" required><br>
+    <input class="grid2" type="time" id="end" name="end" placeholder="Enter the ending time for the event" value="<%= event.endDateTime.toISOString().substring(event.endDateTime.toISOString().indexOf('T') + 1, event.endDateTime.toISOString().indexOf('Z')) %>" required><br>
 
     <label class="grid1" for="image">Image</label>
     <input class="grid2" type="file" id="image" name="image" placeholder="Upload an image for the event" value="<%= event.image %>"><br>
