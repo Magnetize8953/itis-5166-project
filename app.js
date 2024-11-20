@@ -14,7 +14,7 @@ const app = express()
 // configure app
 let port = 3000
 let host = 'localhost'
-let url = process.env.HL_MONGODB_URL
+let url = process.env.H_MONGODB_URL
 app.set('view engine', 'ejs')
 
 // connect to mongo
