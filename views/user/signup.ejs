@@ -1,8 +1,8 @@
-<%- include('./partials/header', {title: 'Sign Up'}) %>
+<%- include('../partials/header', {title: 'Sign Up'}) %>
 
 <h1>Sign Up</h1>
 
-<form id="signup-form">
+<form id="signup-form" action="/users" method="POST">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required>
 
@@ -12,14 +12,9 @@
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required>
 
-    <label for="confirm-password">Confirm Password:</label>
-    <input type="password" id="confirm-password" name="confirm-password" required>
-
     <button type="submit">Sign Up</button>
 </form>
 
-<p>Already have an account? <a href="/login">Log in</a></p>
+<p>Already have an account? <a href="/user/login">Log in</a></p>
 
-<script src="/js/signup.js"></script>
-
-<%- include('./partials/footer') %>
+<%- include('../partials/footer') %>

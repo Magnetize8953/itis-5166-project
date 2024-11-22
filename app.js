@@ -3,6 +3,7 @@ const express = require('express')
 const morgan = require('morgan')
 const methodOverride = require('method-override')
 const eventRoutes = require('./routes/eventRoutes')
+const userRoutes = require('./routes/userRoutes')
 const mongoose = require('mongoose')
 require('dotenv').config()
 
@@ -50,18 +51,11 @@ app.get('/contact', (req, res) => {
     res.render('contact')
 })
 
-// login page
-app.get('/login', (req, res) => {
-    res.render('login')
-})
-
-// signup page
-app.get('/signup', (req, res) => {
-    res.render('signup')
-})
-
 // middleware for events pages
 app.use('/events', eventRoutes)
+
+// middleware for user pages
+app.use('/users', userRoutes)
 
 // error handling
 app.use((req, res, next) => {
