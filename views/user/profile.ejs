@@ -9,10 +9,13 @@
 				<br />
 				<% events.filter(event => event.category === cat).forEach(event => { %>
 					<div class="event-card <%= event.category %>">
-					<h2><%= event.title %></h2>
-					<p class="category"><%= new Date(event.startDateTime).toLocaleString() %></p>
-					<p><%= event.description %></p>
-					<a class="learn-more" href="../events/<%= event.id %>">Learn More!</a>
+						<h2><%= event.title %></h2>
+						<p class="category"><%= new Date(event.startDateTime).toLocaleString() %></p>
+						<p><%= event.description %></p>
+						<div class="options">
+							<form><button type='submit' formmethod='GET' formaction='/events/<%= event.id %>/edit' class='learn-more'>Edit Event</button></form></li>
+							<form><button type='submit' formmethod='POST' formaction='/events/<%= event.id %>?_method=DELETE' class='learn-more'>Delete Event</button></form></li>
+						</div>
 					</div>
 				<% }) %>
 				<% if (events.filter(event => event.category === cat).length % 2 === 1) { %>

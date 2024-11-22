@@ -27,7 +27,7 @@ exports.isAuthor = (req, res, next) => {
     model.findById(id)
         .then(event => {
             if (event) {
-                if (event.author == req.session.user) {
+                if (event.host == req.session.user._id) {
                     return next()
                 } else {
                     let err = new Error('Unauthorized to access resource')
