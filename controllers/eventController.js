@@ -35,13 +35,15 @@ exports.create = (req, res, next) => {
 
     event.save()
         .then((event) => {
+            req.flash('success', 'Event successfully created')
             res.redirect('/events')
         })
         .catch(err => {
             if (err.name === 'ValidationError') {
+                req.flash('error', 'Error in validating data')
                 err.status = 400
             }
-            next(err)
+            res.redirect('back')
         })
 }
 
@@ -115,9 +117,10 @@ exports.update = (req, res, next) => {
         })
         .catch(err => {
             if (err.name === 'ValidationError') {
+                req.flash('error', 'Error in validating data')
                 err.status = 400
             }
-            next(err)
+            res.redirect('back')
         })
 }
 

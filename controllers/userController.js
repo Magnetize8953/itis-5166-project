@@ -14,11 +14,13 @@ exports.create = (req, res, next) => {
         .then(user => res.redirect('/users/login'))
         .catch(err => {
             if (err.name === 'ValidationError') {
-                return res.redirect('/users/new')
+                req.flash('error', err.message)
+                return res.redirect('/users/signup')
             }
 
             if (err.code === 11000) {
-                return res.redirect('/users/new')
+                req.flash('error', 'Email address has already been used')
+                return res.redirect('/users/signup')
             }
 
             next(err)
@@ -37,17 +39,17 @@ exports.login = (req, res, next) => {
     model.findOne({ email: email })
         .then(user => {
             if (!user) {
-                console.log('wrong email address')
+                req.flash('error', 'Invalid email address')
                 res.redirect('/users/login')
             } else {
                 user.comparePassword(password)
                     .then(result => {
                         if (result) {
+                            req.flash('success', 'Successfully logged in')
                             req.session.user = user._id
-                            req.session.username = user.username
                             res.redirect('/users/profile')
                         } else {
-                            console.log('wrong password')
+                            req.flash('error', 'Incorrect password')
                             res.redirect('/users/login')
                         }
                     })

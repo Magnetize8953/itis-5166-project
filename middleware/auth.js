@@ -5,7 +5,7 @@ exports.isGuest = (req, res, next) => {
     if (!req.session.user) {
         return next()
     } else {
-        console.log('err: already logged in')
+        req.flash('error', 'You are already logged in')
         return res.redirect('/users/profile')
     }
 }
@@ -15,7 +15,7 @@ exports.isLoggedIn = (req, res, next) => {
     if (req.session.user) {
         return next()
     } else {
-        console.log('err: not logged in')
+        req.flash('error', 'Please log in')
         return res.redirect('/users/login')
     }
 }
