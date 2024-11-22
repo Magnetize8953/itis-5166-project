@@ -5,6 +5,8 @@ const methodOverride = require('method-override')
 const eventRoutes = require('./routes/eventRoutes')
 const userRoutes = require('./routes/userRoutes')
 const mongoose = require('mongoose')
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 require('dotenv').config()
 
 
@@ -29,6 +31,15 @@ mongoose.connect(url)
     .catch(err => console.log(err.message))
 
 // mount middleware
+app.use(
+    session({
+        secret: '21d3f057d5615b9c4f8ced9b82aff29e048f9569136e3f47c9c6d9b7baa7be2b',
+        resave: false,
+        saveUninitialized: false,
+        store: new MongoStore({ mongoUrl: url }),
+        cookie: { maxAge: 60 * 60 * 1000 }
+    })
+)
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('tiny'))

@@ -43,6 +43,7 @@ exports.login = (req, res, next) => {
                 user.comparePassword(password)
                     .then(result => {
                         if (result) {
+                            req.session.user = user._id
                             res.redirect('/users/profile')
                         } else {
                             console.log('wrong password')
@@ -54,9 +55,25 @@ exports.login = (req, res, next) => {
         .catch(err => next(err))
 }
 
-// TODO: GET /users/profile: send user's profile page
-exports.profile = (req, res, next) => { }
+// GET /users/profile: send user's profile page
+exports.profile = (req, res, next) => {
+    let id = req.session.user
+    Promise.all([model.findById(id), Event.find({ author: id })])
+        .then(result => {
+            const [user, events] = result
+            const categories = [...new Set(events.map(event => event.category))]
+            res.render('./user/profile', { user, events, categories })
+        })
+        .catch(err => next(err))
+}
 
-
-// TODO: POST /users/logout: logout a user
-exports.logout = (req, res, next) => { }
+// POST /users/logout: logout a user
+exports.logout = (req, res, next) => {
+    req.session.destroy(err => {
+        if (err) {
+            return next(err)
+        } else {
+            res.redirect('/')
+        }
+    })
+}

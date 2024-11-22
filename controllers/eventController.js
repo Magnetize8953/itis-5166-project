@@ -31,6 +31,8 @@ exports.create = (req, res, next) => {
 
     let event = new model(req.body)
 
+    event.author = req.session.user
+
     event.save()
         .then((event) => {
             res.redirect('/events')
