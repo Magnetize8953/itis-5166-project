@@ -17,14 +17,19 @@
         <div class="header-content">
             <img src="/images/ColorStack_UNC-Charlotte_Logo.png" alt="Logo" id="logo">
             <nav id="user-navigation">
-                <a id="login" href="/users/login">Login</a>
-                <a id="signup" href="/users/signup">Signup</a>
+            <% if (!username) { %>
+                <a class="invis" href="/users/login">Login</a>
+                <a class="vis" href="/users/signup">Signup</a>
+            <% } else { %>
+                <a class="invis" href="/users/logout">Logout</a>
+                <a class="vis" href="/events/new">Create Event</a>
+                <a class="vis" href="/users/profile"><%= username %>'s Profile</a>
+            <% } %>
             </nav>
         </div>
         <nav id="main-navigation">
             <a href="/">Home</a>
             <a href="/events">Events</a>
-            <a href="/events/new">Create Event</a>
         </nav>
     </header>
     <main>

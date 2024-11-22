@@ -44,6 +44,7 @@ exports.login = (req, res, next) => {
                     .then(result => {
                         if (result) {
                             req.session.user = user._id
+                            req.session.username = user.username
                             res.redirect('/users/profile')
                         } else {
                             console.log('wrong password')

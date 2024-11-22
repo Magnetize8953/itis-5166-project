@@ -40,6 +40,11 @@ app.use(
         cookie: { maxAge: 60 * 60 * 1000 }
     })
 )
+app.use((req, res, next) => {
+    res.locals.user = req.session.user || null
+    res.locals.username = req.session.username || null
+    next()
+})
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('tiny'))

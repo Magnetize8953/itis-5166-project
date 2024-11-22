@@ -36,7 +36,7 @@ body {
   border-radius: 0.50em;
 }
 
-#user-navigation a#login {
+#user-navigation a.invis {
   background-color: #333;
   border-color: #246a26;
   border-width: 1px;
@@ -48,12 +48,12 @@ body {
   text-decoration: none;
 }
 
-#user-navigation a#login:hover {
+#user-navigation a.invis:hover {
   background-color: #3a3;
   color: white;
 }
 
-#user-navigation a#signup {
+#user-navigation a.vis {
   background-color: #3a3;
   color: white;
   text-align: center;
