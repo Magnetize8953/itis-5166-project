@@ -49,13 +49,6 @@ exports.create = (req, res, next) => {
 exports.show = (req, res, next) => {
     let id = req.params.id
 
-    // id needs to be a 24-bit hex string
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid event id')
-        err.status = 400
-        return next(err)
-    }
-
     model.findById(id)
         .then(event => {
             if (event) {
@@ -72,13 +65,6 @@ exports.show = (req, res, next) => {
 // GET /events/:id/edit: send html form for editing existing event
 exports.edit = (req, res, next) => {
     let id = req.params.id
-
-    // id needs to be a 24-bit hex string
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid event id')
-        err.status = 400
-        return next(err)
-    }
 
     model.findById(id)
         .then(event => {
@@ -117,13 +103,6 @@ exports.update = (req, res, next) => {
     delete event.start
     delete event.end
 
-    // id needs to be a 24-bit hex string
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid event id')
-        err.status = 400
-        return next(err)
-    }
-
     model.findByIdAndUpdate(id, event, { useFindAndModify: false, runValidators: true })
         .then(event => {
             if (event) {
@@ -145,13 +124,6 @@ exports.update = (req, res, next) => {
 // DELETE /events/:id: delete event id
 exports.delete = (req, res, next) => {
     let id = req.params.id
-
-    // id needs to be a 24-bit hex string
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid event id')
-        err.status = 400
-        return next(err)
-    }
 
     model.findByIdAndDelete(id, { useFindAndModify: true })
         .then(event => {

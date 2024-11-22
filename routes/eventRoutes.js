@@ -3,6 +3,7 @@ const express = require('express')
 const controller = require('../controllers/eventController')
 const { fileUpload } = require('../middleware/fileUpload')
 const { isLoggedIn, isAuthor } = require('../middleware/auth')
+const { validateId } = require('../middleware/validator')
 
 // set up router
 const router = express.Router()
@@ -17,16 +18,16 @@ router.get('/new', isLoggedIn, controller.new)
 router.post('/', isLoggedIn, fileUpload, controller.create)
 
 // GET /events/:id: send details about event id
-router.get('/:id', controller.show)
+router.get('/:id', validateId, controller.show)
 
 // GET /events/:id/edit: send html form for editing existing event
-router.get('/:id/edit', isLoggedIn, isAuthor, controller.edit)
+router.get('/:id/edit', validateId, isLoggedIn, isAuthor, controller.edit)
 
 // PUT /events/:id: update event id
-router.put('/:id', isLoggedIn, isAuthor, fileUpload, controller.update)
+router.put('/:id', validateId, isLoggedIn, isAuthor, fileUpload, controller.update)
 
 // DELETE /events/:id: delete event id
-router.delete('/:id', isLoggedIn, isAuthor, controller.delete)
+router.delete('/:id', validateId, isLoggedIn, isAuthor, controller.delete)
 
 
 // export
