@@ -1,5 +1,6 @@
 // require modules
 const model = require('../models/event')
+const User = require('../models/user')
 
 
 // GET /events: send all events
@@ -22,6 +23,7 @@ exports.create = (req, res, next) => {
 
     // fix up req.body
     req.body.category = req.body.category.charAt(0).toLowerCase() + req.body.category.slice(1)
+    req.body.host = req.session.user
     req.body.startDateTime = new Date(`${req.body.when}T${req.body.start}`)
     req.body.endDateTime = new Date(`${req.body.when}T${req.body.end}`)
     req.body.image = '/images/' + req.file.filename
@@ -30,8 +32,6 @@ exports.create = (req, res, next) => {
     delete req.body.end
 
     let event = new model(req.body)
-
-    event.author = req.session.user
 
     event.save()
         .then((event) => {
@@ -54,7 +54,17 @@ exports.show = (req, res, next) => {
     model.findById(id)
         .then(event => {
             if (event) {
-                res.render('./event/eventDetail', { event })
+                User.findById(event.host)
+                    .then(user => {
+                        if (user) {
+                            res.render('./event/eventDetail', { event, user })
+                        } else {
+                            let err = new Error(`Cannot find host of event with id ${id}`)
+                            err.status = 404
+                            next(err)
+                        }
+                    })
+                    .catch(err => next(err))
             } else {
                 let err = new Error(`Cannot find a event with id ${id}`)
                 err.status = 404

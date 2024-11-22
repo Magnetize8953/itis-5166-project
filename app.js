@@ -44,6 +44,8 @@ app.use(
 app.use(flash())
 app.use((req, res, next) => {
     res.locals.user = req.session.user || null
+    res.locals.firstname = req.session.firstname || null
+    res.locals.lastname = req.session.lastname || null
     res.locals.errorMessages = req.flash('error')
     res.locals.successMessages = req.flash('success')
     next()

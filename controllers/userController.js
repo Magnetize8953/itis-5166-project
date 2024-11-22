@@ -46,7 +46,7 @@ exports.login = (req, res, next) => {
                     .then(result => {
                         if (result) {
                             req.flash('success', 'Successfully logged in')
-                            req.session.user = user._id
+                            req.session.user = user
                             res.redirect('/users/profile')
                         } else {
                             req.flash('error', 'Incorrect password')
@@ -61,7 +61,7 @@ exports.login = (req, res, next) => {
 // GET /users/profile: send user's profile page
 exports.profile = (req, res, next) => {
     let id = req.session.user
-    Promise.all([model.findById(id), Event.find({ author: id })])
+    Promise.all([model.findById(id), Event.find({ host: id })])
         .then(result => {
             const [user, events] = result
             const categories = [...new Set(events.map(event => event.category))]

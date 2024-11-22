@@ -5,7 +5,8 @@ const Schema = mongoose.Schema
 
 // set up user schema
 const userSchema = new Schema({
-  username: { type: String, required: [true, 'username is required'] },
+  firstname: { type: String, required: [true, 'first name is required'] },
+  lastname: { type: String, required: [true, 'last name is required'] },
   email: { type: String, required: [true, 'email address is required'], unique: [true, 'this email address has been used'] },
   password: { type: String, required: [true, 'password is required'] },
 })
