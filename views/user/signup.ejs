@@ -1,19 +1,23 @@
-<%- include('../partials/header', {title: 'Sign Up'}) %>
+<%- include('../partials/header', {title: 'Sign Up', extraCSS: ['accounts']}) %>
 
 <h1>Sign Up</h1>
 
-<form id="signup-form" action="/users" method="POST">
-    <label for="firstname">First Name:</label>
-    <input type="text" id="firstname" name="firstname" required>
+<form class="account-form" id="signup-form" action="/users" method="POST">
+    <label class="grid1" for="firstname">First Name:</label>
+    <input class="grid2" type="text" id="firstname" name="firstname" required>
+    <br>
 
-    <label for="lastname">Last Name:</label>
-    <input type="text" id="lastname" name="lastname" required>
+    <label class="grid1" for="lastname">Last Name:</label>
+    <input class="grid2" type="text" id="lastname" name="lastname" required>
+    <br>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
+    <label class="grid1" for="email">Email:</label>
+    <input class="grid2" type="email" id="email" name="email" required>
+    <br>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
+    <label class="grid1" for="password">Password:</label>
+    <input class="grid2" type="password" id="password" name="password" minlength="8" required>
+    <br>
 
     <button type="submit">Sign Up</button>
 </form>
