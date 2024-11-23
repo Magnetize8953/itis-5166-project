@@ -118,6 +118,7 @@ exports.update = (req, res, next) => {
     model.findByIdAndUpdate(id, event, { useFindAndModify: false, runValidators: true })
         .then(event => {
             if (event) {
+                req.flash('success', 'Event successfully edited')
                 res.redirect(`/events/${id}`)
             } else {
                 let err = new Error(`Cannot find a event with id ${id}`)
@@ -141,6 +142,7 @@ exports.delete = (req, res, next) => {
     model.findByIdAndDelete(id, { useFindAndModify: true })
         .then(event => {
             if (event) {
+                req.flash('success', 'Event successfully deleted')
                 res.redirect('/events')
             } else {
                 let err = new Error(`Cannot find event with id ${id}`)
