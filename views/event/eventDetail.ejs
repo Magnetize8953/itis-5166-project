@@ -15,9 +15,10 @@
     <img src="<%= event.image %>" alt="Event image">
 </section>
 
-<div id="buttons">
-    <button id="register">Register</button>
-    <button id="cancel">Cancel</button>
-</div>
+<form action="/events/<%= event.id %>/rsvp" method="POST">
+    <button type="submit" name="choice" id="choice" value="YES">YES</button>
+    <button type="submit" name="choice" id="choice" value="NO">NO</button>
+    <button type="submit" name="choice" id="choice" value="MAYBE">MAYBE</button>
+</form>
 
 <%- include('../partials/footer') %>

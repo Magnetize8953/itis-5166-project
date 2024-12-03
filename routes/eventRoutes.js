@@ -29,6 +29,9 @@ router.put('/:id', validateId, isLoggedIn, isAuthor, fileUpload, validateEvent, 
 // DELETE /events/:id: delete event id
 router.delete('/:id', validateId, isLoggedIn, isAuthor, controller.delete)
 
+// POST /events/:id/rsvp: add rsvp information
+router.post('/:id/rsvp', validateId, isLoggedIn, controller.rsvp)
+
 
 // export
 module.exports = router

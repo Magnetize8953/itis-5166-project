@@ -11,7 +11,7 @@ const eventSchema = new Schema({
   endDateTime: { type: Date, required: [true, 'endDateTime is required'] },
   location: { type: String, required: [true, 'location is required'] },
   description: { type: String, required: [true, 'description is required'] },
-  image: { type: String, required: [true, 'image path is required'] },
+  image: { type: String, required: [true, 'image path is required'] }
 })
 
 // export schema

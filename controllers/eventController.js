@@ -1,6 +1,7 @@
 // require modules
 const model = require('../models/event')
 const User = require('../models/user')
+const RSVP = require('../models/rsvp')
 
 
 // GET /events: send all events
@@ -148,6 +149,51 @@ exports.delete = (req, res, next) => {
                 let err = new Error(`Cannot find event with id ${id}`)
                 err.status = 404
                 next(err)
+            }
+        })
+        .catch(err => next(err))
+}
+
+// POST /events/:id/rsvp: add rsvp information
+exports.rsvp = (req, res, next) => {
+    let id = req.params.id
+    let userId = req.session.user
+    let response = req.body.choice
+
+    RSVP.find({ user: userId, event: id })
+        .then(r => {
+            if (r.length > 0) {
+                RSVP.updateOne({ user: userId, event: id }, { status: response })
+                    .then(rs => {
+                        if (rs) {
+                            req.flash('success', 'Succesfully updated RSVP\'d')
+                            res.redirect('back')
+                        } else {
+                            let err = new Error('Failed to update RSVP')
+                            err.status = 400
+                            next(err)
+                        }
+                    })
+                    .catch(err => next(err))
+            } else {
+                let newRSVP = new RSVP({
+                    user: userId,
+                    event: id,
+                    status: response
+                })
+
+                newRSVP.save()
+                    .then(r => {
+                        if (r) {
+                            req.flash('success', 'Succesfully RSVP\'d')
+                            res.redirect('back')
+                        } else {
+                            let err = new Error('Failed to create RSVP')
+                            err.status = 400
+                            next(err)
+                        }
+                    })
+                    .catch(err => next(err))
             }
         })
         .catch(err => next(err))
