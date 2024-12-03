@@ -143,8 +143,18 @@ exports.delete = (req, res, next) => {
     model.findByIdAndDelete(id, { useFindAndModify: true })
         .then(event => {
             if (event) {
-                req.flash('success', 'Event successfully deleted')
-                res.redirect('/events')
+                RSVP.deleteMany({ event: id })
+                    .then(rsvps => {
+                        if (rsvps) {
+                            req.flash('success', 'Event successfully deleted')
+                            res.redirect('/events')
+                        } else {
+                            let err = new Error('Failed to delete RSVPs')
+                            err.status = 400
+                            next(err)
+                        }
+                    })
+                    .catch(err => next(err))
             } else {
                 let err = new Error(`Cannot find event with id ${id}`)
                 err.status = 404
