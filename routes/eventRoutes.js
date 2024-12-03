@@ -2,7 +2,7 @@
 const express = require('express')
 const controller = require('../controllers/eventController')
 const { fileUpload } = require('../middleware/fileUpload')
-const { isLoggedIn, isAuthor } = require('../middleware/auth')
+const { isLoggedIn, isAuthor, isNotAuthor } = require('../middleware/auth')
 const { validateId, validateEvent, validateResult } = require('../middleware/validator')
 
 // set up router
@@ -30,7 +30,7 @@ router.put('/:id', validateId, isLoggedIn, isAuthor, fileUpload, validateEvent, 
 router.delete('/:id', validateId, isLoggedIn, isAuthor, controller.delete)
 
 // POST /events/:id/rsvp: add rsvp information
-router.post('/:id/rsvp', validateId, isLoggedIn, controller.rsvp)
+router.post('/:id/rsvp', validateId, isLoggedIn, isNotAuthor, controller.rsvp)
 
 
 // export

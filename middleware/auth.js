@@ -42,3 +42,26 @@ exports.isAuthor = (req, res, next) => {
         })
         .catch(err => next(err))
 }
+
+// check if the user is not author
+exports.isNotAuthor = (req, res, next) => {
+    let id = req.params.id
+
+    model.findById(id)
+        .then(event => {
+            if (event) {
+                if (event.host == req.session.user._id) {
+                    let err = new Error('Unauthorized to access resource')
+                    err.status = 401
+                    return next(err)
+                } else {
+                    next()
+                }
+            } else {
+                let err = new Error('Cannot find a event with id ' + id)
+                err.status = 404
+                next(err)
+            }
+        })
+        .catch(err => next(err))
+}
