@@ -1,5 +1,7 @@
+// require modules
 const model = require('../models/user')
 const Event = require('../models/event')
+const RSVP = require('../models/rsvp')
 
 
 // GET /users/signup: send html form for creating a new user account
@@ -61,11 +63,21 @@ exports.login = (req, res, next) => {
 // GET /users/profile: send user's profile page
 exports.profile = (req, res, next) => {
     let id = req.session.user
-    Promise.all([model.findById(id), Event.find({ host: id })])
+    Promise.all([model.findById(id), Event.find({ host: id }), RSVP.find({ user: id })])
         .then(result => {
-            const [user, events] = result
+            const [user, events, rsvps] = result
             const categories = [...new Set(events.map(event => event.category))]
-            res.render('./user/profile', { user, events, categories })
+            Event.find({ _id: { $in: rsvps.map(rsvp => rsvp.event) } })
+                .then(rsvpEvents => {
+                    if (rsvpEvents) {
+                        res.render('./user/profile', { user, events, categories, rsvps, rsvpEvents })
+                    } else {
+                        let err = new Error('Unable to get RSVP revents')
+                        err.status = 400
+                        next(err)
+                    }
+                })
+                .catch(err => next(err))
         })
         .catch(err => next(err))
 }

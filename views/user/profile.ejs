@@ -27,4 +27,23 @@
 		<% } %>
 	</div>
 
+	<br />
+
+	<div id="events">
+		<% if (rsvpEvents.length) { %>
+			<h2>Event RSVPs</h2>
+			<br />
+			<% rsvpEvents.forEach(event => { %>
+				<div class="event-card <%= event.category %>">
+					<h2><a href="/events/<%= event.id %>"><%= event.title %></a></h2>
+					<p class="category"><%= new Date(event.startDateTime).toLocaleString() %></p>
+					<p class="category"><b>Going?</b> <%= rsvps[rsvpEvents.indexOf(event)].status %></p>
+					<p><%= event.description %></p>
+				</div>
+			<% }) %>
+		<% } else { %>
+			<h2>No Event RSVPs Found</h2>
+		<% } %>
+	</div>
+
 <%- include('../partials/footer') %>
