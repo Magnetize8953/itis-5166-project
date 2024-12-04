@@ -55,10 +55,12 @@ exports.show = (req, res, next) => {
     model.findById(id)
         .then(event => {
             if (event) {
-                User.findById(event.host)
-                    .then(host => {
-                        if (host) {
-                            res.render('./event/eventDetail', { event, host })
+                Promise.all([RSVP.find({ event: event._id }), User.findById(event.host)])
+                    .then(result => {
+                        if (result) {
+                            let [rsvps, host] = result
+                            let yesRSVP = rsvps.filter(rsvp => rsvp.status == 'YES').length
+                            res.render('./event/eventDetail', { event, host, yesRSVP })
                         } else {
                             let err = new Error(`Cannot find host of event with id ${id}`)
                             err.status = 404
