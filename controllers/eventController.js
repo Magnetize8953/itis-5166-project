@@ -56,9 +56,9 @@ exports.show = (req, res, next) => {
         .then(event => {
             if (event) {
                 User.findById(event.host)
-                    .then(user => {
-                        if (user) {
-                            res.render('./event/eventDetail', { event, user })
+                    .then(host => {
+                        if (host) {
+                            res.render('./event/eventDetail', { event, host })
                         } else {
                             let err = new Error(`Cannot find host of event with id ${id}`)
                             err.status = 404
