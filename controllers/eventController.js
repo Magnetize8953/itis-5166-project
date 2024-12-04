@@ -179,7 +179,7 @@ exports.rsvp = (req, res, next) => {
                     .then(rs => {
                         if (rs) {
                             req.flash('success', 'Succesfully updated RSVP\'d')
-                            res.redirect('back')
+                            res.redirect('/users/profile')
                         } else {
                             let err = new Error('Failed to update RSVP')
                             err.status = 400
@@ -198,7 +198,7 @@ exports.rsvp = (req, res, next) => {
                     .then(r => {
                         if (r) {
                             req.flash('success', 'Succesfully RSVP\'d')
-                            res.redirect('back')
+                            res.redirect('/users/profile')
                         } else {
                             let err = new Error('Failed to create RSVP')
                             err.status = 400

@@ -16,10 +16,17 @@
     <img src="<%= event.image %>" alt="Event image">
 </section>
 
-<form action="/events/<%= event.id %>/rsvp" method="POST">
-    <button type="submit" name="choice" id="choice" value="YES">YES</button>
-    <button type="submit" name="choice" id="choice" value="NO">NO</button>
-    <button type="submit" name="choice" id="choice" value="MAYBE">MAYBE</button>
-</form>
+<% if (user != null) { %>
+    <% if (host._id != user._id) { %>
+        <form action="/events/<%= event.id %>/rsvp" method="POST">
+            <button type="submit" name="choice" id="choice" value="YES">YES</button>
+            <button type="submit" name="choice" id="choice" value="NO">NO</button>
+            <button type="submit" name="choice" id="choice" value="MAYBE">MAYBE</button>
+        </form>
+    <% } else { %>
+        <form><button type='submit' formmethod='GET' formaction='/events/<%= event.id %>/edit' class='learn-more'>Edit Event</button></form></li>
+        <form><button type='submit' formmethod='POST' formaction='/events/<%= event.id %>?_method=DELETE' class='learn-more'>Delete Event</button></form></li>
+    <% } %>
+<% } %>
 
 <%- include('../partials/footer') %>
